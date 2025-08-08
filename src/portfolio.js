@@ -74,8 +74,8 @@ const projects = [
       es: 'Diseñé y desarrollé un portafolio web profesional desde cero para presentar mis proyectos, habilidades y experiencia como estudiante de Ingeniería de Software. El sitio está construido con un diseño limpio, moderno y responsive, pensado para ofrecer una navegación intuitiva desde cualquier dispositivo.',
       en: 'I designed and developed a professional web portfolio from scratch to showcase my projects, skills, and experience as a Software Engineering student. The site features a clean, modern, and responsive design for smooth navigation across devices.',
     },
-    stack: ['JavaScript', 'HTML', 'CSS', 'C#', 'TSQL'],
-    sourceCode: 'https://github.com',
+    stack: ['JavaScript', 'HTML', 'CSS',],
+    sourceCode: 'https://github.com/danialvarado472/mydportfolio',
   },
 ]
 
