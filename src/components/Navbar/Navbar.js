@@ -4,7 +4,7 @@ import WbSunnyRoundedIcon from '@material-ui/icons/WbSunnyRounded'
 import MenuIcon from '@material-ui/icons/Menu'
 import CloseIcon from '@material-ui/icons/Close'
 import { ThemeContext } from '../../contexts/theme'
-import { LanguageContext, LanguageProvider } from '../../contexts/LanguageContext'
+import { LanguageContext } from '../../contexts/LanguageContext'
 import { projects, skills, contact } from '../../portfolio'
 import './Navbar.css'
 
@@ -40,10 +40,20 @@ const Navbar = () => {
               onClick={toggleNavList}
               className='link link--nav'
             >
-               {language === 'es' ? 'Habilidades' : 'Skills'}
+              {language === 'es' ? 'Habilidades' : 'Skills'}
             </a>
           </li>
         ) : null}
+
+        <li className='nav__list-item'>
+          <a
+            href='#fotos'
+            onClick={toggleNavList}
+            className='link link--nav'
+          >
+            {language === 'es' ? 'Galería' : 'Gallery'}
+          </a>
+        </li>
 
         {contact.email ? (
           <li className='nav__list-item'>
