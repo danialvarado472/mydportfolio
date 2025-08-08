@@ -1,13 +1,12 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp } from 'react-icons/fa'
 import emailjs from 'emailjs-com'
 import './Contact.css'
 import { contact } from '../../portfolio'
 
-const phoneNumber = '50685762137' 
-const whatsappMessage =
-  '¡Hola! Me gustaría contactarte desde tu portafolio.'
+const phoneNumber = '50685762137'
+const whatsappMessage = '¡Hola! Me gustaría contactarte desde tu portafolio.'
 
 const Contact = ({ language }) => {
   const [showForm, setShowForm] = useState(false)
@@ -19,6 +18,10 @@ const Contact = ({ language }) => {
   })
 
   const [isSent, setIsSent] = useState(false)
+
+  // Ref y estado para animar el título cuando entra en viewport
+  const titleRef = useRef(null)
+  const [animate, setAnimate] = useState(false)
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -53,9 +56,37 @@ const Contact = ({ language }) => {
   const encodedMessage = encodeURIComponent(whatsappMessage)
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`
 
+  // Intersection Observer para animar el título al entrar en la pantalla
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setAnimate(true)
+            observer.disconnect() // solo una vez
+          }
+        })
+      },
+      {
+        threshold: 0.5, // 50% visible para activar animación
+      }
+    )
+    if (titleRef.current) {
+      observer.observe(titleRef.current)
+    }
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
+
   return (
     <section className="section contact center" id="contact">
-      <h2 className="section__title">{contact.title[language]}</h2>
+      <h2
+        ref={titleRef}
+        className={`section__title ${animate ? 'fade-in-up delay-1' : ''}`}
+      >
+        {contact.title[language]}
+      </h2>
 
       {/* ICONOS */}
       <div className="contact__icons">

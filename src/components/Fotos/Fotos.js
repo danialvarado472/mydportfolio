@@ -89,6 +89,10 @@ const Fotos = ({ language }) => {
   const carouselRef = useRef(null)
   const [currentIndex, setCurrentIndex] = useState(0)
 
+  // Ref y estado para animar el título cuando entra en viewport
+  const titleRef = useRef(null)
+  const [animate, setAnimate] = useState(false)
+
   const handleClick = (projectIndex) => {
     setTimeout(() => {
       const cards = document.querySelectorAll('.project')
@@ -126,13 +130,41 @@ const Fotos = ({ language }) => {
     }
   }, [currentIndex])
 
+  
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setAnimate(true)
+            observer.disconnect()
+          }
+        })
+      },
+      {
+        threshold: 0.5,
+      }
+    )
+    if (titleRef.current) {
+      observer.observe(titleRef.current)
+    }
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
+
   const sectionTitle = language === 'es' ? 'Galería' : 'Gallery'
   const prevLabel = language === 'es' ? 'Imagen anterior' : 'Previous image'
   const nextLabel = language === 'es' ? 'Siguiente imagen' : 'Next image'
 
   return (
     <section className="section fotos" id="fotos">
-      <h2 className="section__title">{sectionTitle}</h2>
+      <h2
+        ref={titleRef}
+        className={`section__title ${animate ? 'fade-in-up delay-1' : ''}`}
+      >
+        {sectionTitle}
+      </h2>
 
       <div className="fotos__wrapper">
         <button
