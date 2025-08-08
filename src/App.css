@@ -205,7 +205,7 @@ main {
   animation: fadeInScale 0.6s ease-out forwards;
 }
 
-/* Opcional: delay para efecto escalonado */
+
 .delay-1 {
   animation-delay: 0.2s;
 }

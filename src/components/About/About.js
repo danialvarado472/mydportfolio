@@ -10,10 +10,9 @@ const About = ({ language }) => {
 
   return (
     <div className='about center'>
-      {/* ✅ Sin animación */}
       <img src={logo} alt='' className='about__logo' />
 
-      {/* ✅ Título con efecto typing + color distinto en nombre */}
+      
       <h1 className='about__title typing-effect'>
         {greeting}{' '}
         <span className='about__name'>{name}.</span>
