@@ -1,9 +1,13 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { useState } from 'react'
-import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
+import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp } from 'react-icons/fa'
 import emailjs from 'emailjs-com'
 import './Contact.css'
 import { contact } from '../../portfolio'
+
+const phoneNumber = '50685762137' 
+const whatsappMessage =
+  '¡Hola! Me gustaría contactarte desde tu portafolio.'
 
 const Contact = ({ language }) => {
   const [showForm, setShowForm] = useState(false)
@@ -46,42 +50,53 @@ const Contact = ({ language }) => {
       )
   }
 
+  const encodedMessage = encodeURIComponent(whatsappMessage)
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`
+
   return (
-    <section className='section contact center' id='contact'>
-      <h2 className='section__title'>{contact.title[language]}</h2>
+    <section className="section contact center" id="contact">
+      <h2 className="section__title">{contact.title[language]}</h2>
 
       {/* ICONOS */}
-      <div className='contact__icons'>
+      <div className="contact__icons">
         <a
-          href='https://github.com/danialvarado472'
-          target='_blank'
-          rel='noopener noreferrer'
-          aria-label='GitHub'
+          href="https://github.com/danialvarado472"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub"
         >
-          <FaGithub className='contact__icon' />
+          <FaGithub className="contact__icon" />
         </a>
         <a
-          href='https://www.linkedin.com/in/daniela-alvarado-nagygeller-b33534379/'
-          target='_blank'
-          rel='noopener noreferrer'
-          aria-label='LinkedIn'
+          href="https://www.linkedin.com/in/daniela-alvarado-nagygeller-b33534379/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn"
         >
-          <FaLinkedin className='contact__icon' />
+          <FaLinkedin className="contact__icon" />
         </a>
         <a
-          href='https://mail.google.com/mail/?view=cm&fs=1&to=danialvarado472@gmail.com'
-          target='_blank'
-          rel='noopener noreferrer'
-          aria-label='Gmail'
-          >
-          <FaEnvelope className='contact__icon' />
-          </a>
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=danialvarado472@gmail.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Gmail"
+        >
+          <FaEnvelope className="contact__icon" />
+        </a>
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Chat en WhatsApp"
+          className="contact__icon whatsapp-icon"
+        >
+          <FaWhatsapp />
+        </a>
       </div>
 
-      {/* BOTÓN */}
       <button
-        type='button'
-        className='btn btn--outline'
+        type="button"
+        className="btn btn--outline"
         onClick={handleToggleForm}
       >
         {language === 'es' ? 'Contacto' : 'Contact'}
@@ -89,45 +104,45 @@ const Contact = ({ language }) => {
 
       {/* FORMULARIO */}
       {showForm && (
-        <form className='contact__form' onSubmit={handleSubmit}>
+        <form className="contact__form" onSubmit={handleSubmit}>
           <input
-            type='text'
-            name='name'
-            placeholder='Nombre / Name'
+            type="text"
+            name="name"
+            placeholder="Nombre / Name"
             value={formData.name}
             onChange={handleChange}
             required
           />
           <input
-            type='email'
-            name='email'
-            placeholder='Correo / Email'
+            type="email"
+            name="email"
+            placeholder="Correo / Email"
             value={formData.email}
             onChange={handleChange}
             required
           />
           <input
-            type='tel'
-            name='phone'
-            placeholder='Teléfono / Phone'
+            type="tel"
+            name="phone"
+            placeholder="Teléfono / Phone"
             value={formData.phone}
             onChange={handleChange}
             required
           />
           <textarea
-            name='message'
-            rows='5'
-            placeholder='Mensaje / Message'
+            name="message"
+            rows="5"
+            placeholder="Mensaje / Message"
             value={formData.message}
             onChange={handleChange}
             required
           />
-          <button type='submit' className='btn btn--outline'>
+          <button type="submit" className="btn btn--outline">
             {language === 'es' ? 'Enviar' : 'Send'}
           </button>
 
           {isSent && (
-            <p className='contact__success'>
+            <p className="contact__success">
               {language === 'es'
                 ? 'Mensaje enviado con éxito 🎉'
                 : 'Message sent successfully 🎉'}
