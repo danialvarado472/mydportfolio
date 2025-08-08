@@ -9,20 +9,19 @@ import { projects, skills, contact } from '../../portfolio'
 import './Navbar.css'
 
 const LanguageSwitch = ({ language, toggleLanguage }) => (
-  <>
+  <div className="switch-container">
     <input
       type="checkbox"
       id="language-switch"
       onChange={toggleLanguage}
       checked={language === 'en'}
       aria-checked={language === 'en'}
-      style={{ display: 'none' }}
     />
     <label className="switch" htmlFor="language-switch" aria-label="Switch language">
       <span className="slider" />
       <span className="switch-label">{language === 'es' ? 'ES' : 'EN'}</span>
     </label>
-  </>
+  </div>
 )
 
 const Navbar = () => {
