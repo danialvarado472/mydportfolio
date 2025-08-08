@@ -24,7 +24,7 @@
   --clr-primary: #FFCBA4;
   --shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
     rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-    --card-bg: #F39669;
+  --card-bg: #F39669;
 }
 
 main {
@@ -48,41 +48,59 @@ main {
   align-items: center;
 }
 
+
 .link {
   color: var(--clr-primary);
   padding: 0 0 0.3em 0;
   position: relative;
+  text-decoration: none;
+  
 }
+
 
 .link:hover {
   color: var(--clr-primary);
 }
 
-.link::before {
-  content: '';
-  display: inline;
-  width: 0%;
-  height: 0.2em;
-  position: absolute;
-  bottom: 0;
-  background-color: var(--clr-primary);
-  transition: width 0.2s ease-in;
-}
 
-.link:hover::before,
-.link:focus::before {
-  width: 100%;
-}
-
-.link--nav {
+.link.link--nav {
+  position: relative;
   color: var(--clr-fg);
   text-transform: lowercase;
   font-weight: 500;
+  text-decoration: none;
+  padding-bottom: 0.2em; 
+  transition: color 0.3s ease;
+}
+
+
+.link.link--nav::after {
+  content: '';
+  position: absolute;
+  left: 50%;     
+  bottom: 0;
+  width: 0;
+  height: 3px;   
+  background-color: #F39669; 
+  transition: width 0.3s ease, left 0.3s ease;
+  border-radius: 2px;
+}
+
+.link.link--nav:hover::after,
+.link.link--nav:focus::after {
+  width: 100%;
+  left: 0;
+}
+
+.link.link--nav:hover,
+.link.link--nav:focus {
+  color: #F39669;
 }
 
 .link--icon {
   color: var(--clr-fg);
 }
+
 
 .btn {
   display: block;
@@ -154,9 +172,7 @@ main {
   }
 }
 
-/* --- ANIMACIONES PERSONALIZADAS --- */
 
-/* Fade-in con desplazamiento hacia arriba */
 @keyframes fadeInUp {
   0% {
     opacity: 0;
@@ -168,7 +184,7 @@ main {
   }
 }
 
-/* Fade-in con desplazamiento lateral */
+
 @keyframes fadeInLeft {
   0% {
     opacity: 0;
@@ -180,7 +196,7 @@ main {
   }
 }
 
-/* Fade-in con escala */
+
 @keyframes fadeInScale {
   0% {
     opacity: 0;
@@ -192,7 +208,6 @@ main {
   }
 }
 
-/* Clases utilitarias */
 .fade-in-up {
   animation: fadeInUp 0.8s ease-out forwards;
 }
@@ -204,7 +219,6 @@ main {
 .fade-in-scale {
   animation: fadeInScale 0.6s ease-out forwards;
 }
-
 
 .delay-1 {
   animation-delay: 0.2s;
