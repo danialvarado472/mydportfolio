@@ -13,6 +13,7 @@
   scroll-behavior: smooth;
   transition: transform 1s ease-in-out;
   position: relative;
+  scroll-snap-type: x mandatory;
 }
 
 .fotos__item {
@@ -30,10 +31,10 @@
 }
 
 .fotos__image {
-  width: auto;
-  max-width: 90%;
-  height: auto;
-  object-fit: cover;
+  height: 340px; 
+  width: auto; 
+  max-width: 100%; 
+  object-fit: contain; 
   border-radius: 20px;
   box-shadow: var(--shadow);
   transition: transform 0.6s ease;
@@ -81,9 +82,9 @@
 }
 
 .fotos__arrow--left {
-  left: 0.5em;
+  left: 0.1em;
 }
 
 .fotos__arrow--right {
-  right: 0.5em;
+  right: 0.1em;
 }

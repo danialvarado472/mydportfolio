@@ -1,6 +1,10 @@
 import React, { useRef, useEffect, useState } from 'react'
 import './Fotos.css'
 
+import inicioImg from '../../assets/gallery/inicio.jpg'
+import multasImg from '../../assets/gallery/multas.jpg'
+import mapaImg from '../../assets/gallery/mapa.jpg'
+import pagoImg from '../../assets/gallery/pago.jpg'
 import battleImg from '../../assets/gallery/battle.jpeg'
 import loginImg from '../../assets/gallery/login.jpeg'
 import profileImg from '../../assets/gallery/profile.jpeg'
@@ -8,13 +12,49 @@ import teamImg from '../../assets/gallery/team.jpeg'
 
 const images = [
   {
+    src: inicioImg,
+    alt: {
+      es: 'Programa de Gestión de multas',
+      en: 'Fine management program',
+    },
+    projectIndex: 1,
+    id: 'inicio',
+  },
+  {
+    src: multasImg,
+    alt: {
+      es: 'Visualización de Multas',
+      en: 'Fines Visualization',
+    },
+    projectIndex: 1,
+    id: 'multas',
+  },
+  {
+    src: mapaImg,
+    alt: {
+      es: 'Mapa de calor de multas',
+      en: 'Fines Heatmap',
+    },
+    projectIndex: 1,
+    id: 'mapa',
+  },
+  {
+    src: pagoImg,
+    alt: {
+      es: 'Pago de multas',
+      en: 'Fines Payment',
+    },
+    projectIndex: 1,
+    id: 'pago',
+  },
+  {
     src: battleImg,
     alt: {
       es: 'Juego de Pokémon',
       en: 'Pokémon Game',
     },
-    projectIndex: 1,
-    id: 'pokemon',
+    projectIndex: 2,
+    id: 'pokemon1',
   },
   {
     src: loginImg,
@@ -117,9 +157,7 @@ const Fotos = ({ language }) => {
             <button
               key={id}
               type="button"
-              className={`fotos__item ${
-                index === currentIndex ? 'active' : ''
-              }`}
+              className={`fotos__item ${index === currentIndex ? 'active' : ''}`}
               onClick={() => handleClick(projectIndex)}
             >
               <img className="fotos__image" src={src} alt={alt[language]} />
